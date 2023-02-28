@@ -371,7 +371,7 @@ PS: :**全球最大同性交友网站，技术宅男的天堂，新世界的大�
 3. 输入仓库名 和 描述后, 点击`Create Repository` 即可创建远程仓库
 4. 完成后, 自动进入到远程仓库页面
 
-### 远程仓库操作
+### 远程仓库操作 
 
 | 命令                                 | 作用                                                     |
 | ------------------------------------ | -------------------------------------------------------- |
@@ -396,7 +396,7 @@ PS: :**全球最大同性交友网站，技术宅男的天堂，新世界的大�
 
    ` git remote add git-study https://github.com/xiaoguiyu/Git-Study.git `
 
-2. 查看远程仓库别名 
+2. 查看远程仓库别名
 
    `git remote -v`<img src="Git.assets/image-20230226110852855.png" alt="image-20230226110852855" style="zoom:67%;" />
 
@@ -502,7 +502,7 @@ PS: :**全球最大同性交友网站，技术宅男的天堂，新世界的大�
 
 2. 创建`git.ignore`文件
 
-3. 编辑 git.ignore 文件, 加入一下配置
+3. 编辑 git.ignore 文件, 加入以下配置
 
    ```sh
    # Compiled class file
@@ -539,6 +539,216 @@ PS: :**全球最大同性交友网站，技术宅男的天堂，新世界的大�
    excludesfile = C:/Users/xiaoyu/git.ignore
    ```
 
+
+
+### IDEA配置Git
+
+1. 在IDEA中的`Settings -- Version Control -- Git`中选择自己安装git的目录
+2. 点击test, 出现git的版本号说明配置成功!
+
+> 初始化本地库
+
+在IDEA上方的选项卡, 选择 `VCS -- Create Git Repository`, 之后在点击Ok, 即可初始化本地库
+
+
+
+### 使用IDEA操作Git
+
+> 添加到暂存区
+
+右键点击项目选择` Git -> Add` 将项目添加到暂存区
+
+
+
+> 提交到本地仓库
+
+1. 右键点击项目选择` Git -> Commit Directory` 
+2. 填写提交的描述信息并点击commit, 即可提交到本地库
+
+
+
+> 切换版本
+
+1. 在IDEA的下方选项卡中, 选择`Git -- Log`查看Log版本
+2. 右键点击需要切换的版本,选择 `Checkout Revision`即可切换版本
+
+
+
+> 创建分支
+
+在IDEA上方的选项卡中选择 `Git -- new branch`, 之后在输入分支名, 点击 `create`即可创建
+
+注意: 在输入分支名时, 可以选择直接切换到新创建的分支
+
+
+
+> 切换分支
+
+在IDEA的右下角, 点击 `master -- 点击需要切换的分支 --选择Checkout`, 即可切换分支
+
+
+
+> 分支合并 
+
+正常合并
+
+案例: 将fix分支合并到 当前的 master分支
+
+1. 保证当前处于master分支
+2. 在IDEA的右下角点击 `master -- 选择并点击fix -- Merge Selected into Current `
+
+<img src="Git.assets/image-20230227183524183.png" alt="image-20230227183524183" style="zoom:67%;" />
+
+冲突合并:  
+
+**合并分支时，两个分支在同一个文件有两套完全不同的修改**。Git 无法替我们决定使用哪一个。**必须人为决定新代码内容**
+
+案例: **如果fix分支和master分支都修改了同一个文件的内容, 就会产生合并冲突!**
+
+1. 保证当前处于master分支
+
+2. 在IDEA的右下角点击 `master -- 选择并点击fix -- Merge Selected into Current `
+
+3. 在弹出的提示框中选择 `Merge`, 手动合并代码
+
+4. 此时会出现代码冲突的部分, 如下图  
+
+   <img src="Git.assets/image-20230227190727529.png" alt="image-20230227190727529" style="zoom:67%;" />
+
+5. 手动合并完代码以后，点击右下角的 Apply 按钮. 代码冲突解决，自动提交本地库
+
+
+
+## 八、IDEA集成Github
+
+### 在IDEA中登录Github
+
+> 方式一: 账号密码登录
+
+1. 在IDEA中的 `Settings -- Version Control -- GitHub`
+2. 选择 `Add account`, 输入账号密码即可登录
+
+**(通常因为网络原因不能使用这种方式登录)**
+
+> 方式二: 通过token登录
+
+1. 在GitHub中, 点击 `左上角的图像 -- Settings --Developer settings --Personal access tokens -- tokens -- Generate new token `
+2. 将所有的权限都打钩, 授予这个token所有的权限, 点击Generate
+3. 将生成的token复制并保存!(**生成的token只会显示一次**!)
+4. 在IDEA中选择token登录github, 输入账号, token, 点击login即可完成登录!
+
+### 分享项目到GitHub
+
+1. 在IDEA中选择上方的 `Git -- GitHub -- share Project on GitHub`
+2. 输入 远程仓库地址别名 和描述 点击Share即可完成分享
+
+
+
+### 拉取远程仓库代码到本地
+
+1. 在IDEA中, 点击左下角的`蓝色向左下的箭头`, 即可拉取远程仓库的代码
+
+注意：pull 是拉取远端仓库代码到本地，如果远程库代码和本地库代码不一致，会自动
+合并，如果自动合并失败，还会涉及到手动解决冲突的问题
+
+
+
+### push推送本地代码到远程仓库
+
+在IDEA中, 点击右上角的`绿色向右上的箭头`, 即可将代码推送到远程仓库
+
+注意：
+
+1. push 是将本地库代码推送到远程库，**如果本地库代码跟远程库代码版本不一致，**
+   **push 的操作是会被拒绝的。**
+2. 要想 push 成功，一定要保证本地库的版本要比远程库的版本高！
+3. 一个成熟的程序员在动手改本地代码之前，一定会先检查下远程库跟本地
+   代码的区别！
+4. 如果本地的代码版本已经落后，切记要先 pull 拉取一下远程库的代码，将本地
+   代码更新到最新以后，然后再修改，提交，推送！
+
+
+
+### 克隆远程仓库的代码
+
+1. 复制远程仓库的 **HTTPS连接 或 SSH**
+2. 点击IDEA上方的 `Git -- Clone`, , 选择保存项目的路径
+3. 一路 NEXT, 即可完成克隆
+
+## 九、码云Gitee
+
+操作基本与GitHub一致
+
+Gitee可以将GitHub的远程仓库继承
+
+
+
+## 十、搭建代码托管平台-GitLab
+
+### GitLab介绍
+
+1. GitLab 是由 GitLabInc.开发，使用 MIT 许可证的基于网络的 Git 仓库管理工具，且具有
+   wiki 和 issue 跟踪功能。使用 Git 作为代码管理工具，并在此基础上搭建起来的 web 服务。
+2. GitLab 由乌克兰程序员 DmitriyZaporozhets 和 ValerySizov 开发，它使用 Ruby 语言写
+   成。后来，一些部分用 Go 语言重写。截止 2018 年 5 月，该公司约有 290 名团队成员，以
+   及 2000 多名开源贡献者。G
+3. itLab 被 IBM，Sony，JülichResearchCenter，NASA，Alibaba，
+   Invincea，O’ReillyMedia，Leibniz-Rechenzentrum(LRZ)，CERN，SpaceX 等组织使用
+
+> GitLab 官网地址
+> 官网地址：https://about.gitlab.com/
+> 安装说明：https://about.gitlab.com/installatio
+
+
+
+### GitLab安装
+
+> 环境准备
+
+1. 准备一个系统为 CentOS7 以上版本的服务器，要求内存 4G，磁盘 50G。
+2. 关闭防火墙，并且配置好主机名和 IP，保证服务器可以上网。
+   此教程使用虚拟机：主机名：gitlab-server IP 地址：192.168.200.8
+
+> 安装包准备
+
+下载地址：
+https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-13.10.2-ce.0.el7.x86_64.rpm
+
+安装包下载完成后, 需要将安装包放在 `/opt/moudel`目录下
+
+> 编写安装shell脚本
+
+1. `vim gitlab.sh` 将下面的脚本复制到此文件
+
+```sh
+rpm -ivh /opt/module/gitlab-ce-13.10.2-ce.0.el7.x86_64.rpm
+sudo yum install -y curl policycoreutils-python openssh-server cronie
+sudo lokkit -s http -s ssh
+sudo yum install -y postfix
+sudo service postfix start
+sudo chkconfig postfix oncurl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+sudo EXTERNAL_URL="http://gitlab.example.com" yum -y install gitlab-ce
+```
+
+
+
+> 安装GitLab
+
+1. 给脚本增加执行权限  `chmod +x gitlab.sh`
+
+2. 执行该脚本，开始安装 gitlab-ce  `./gitlab-install.sh`
+
+   注意: 一定要保证服务器可以上网
+
+3. 初始化GitLab服务  `tlab-ctl reconfigure`
+
+4. 启动 GitLab 服务  `tlab-ctl start`
+
+    如果需要停止gitlab服务执行  `gitlab-ctl stop`
+
+5. 使用浏览器访问 GitLab
+   使用主机名或者 IP 地址即可访问 GitLab 服务。需要提前配一下 windows 的 hosts 文件
+
    
 
 
@@ -547,67 +757,4 @@ PS: :**全球最大同性交友网站，技术宅男的天堂，新世界的大�
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 八、IDEA集成Github
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 九、码云Gitee
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 十、搭建代码托管平台-GitLab
-
+ 

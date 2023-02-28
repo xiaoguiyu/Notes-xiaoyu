@@ -155,7 +155,7 @@ Springboot的pom.xml会依赖一个父项目, 主要是管理项目的资源过�
 </dependency>
 ```
 
-**springboot-boot-starter-xxx**：就是spring-boot的场景启动器
+**springboot-boot-starter-xxx**：就是**spring-boot的场景启动器**
 
 **spring-boot-starter-web**：帮我们导入了web模块正常运行所依赖的组件；
 
